@@ -1,8 +1,9 @@
-# Recon Orchestrator
+# recon-pipeline
 
 ![Go](https://img.shields.io/badge/Go-1.20+-00ADD8?logo=go)
 ![License](https://img.shields.io/badge/License-MIT-green)
 ![Platform](https://img.shields.io/badge/Platform-Linux%20%7C%20macOS-blue)
+[![GitHub](https://img.shields.io/badge/GitHub-DashratNandaniya%2Frecon--pipeline-181717?logo=github)](https://github.com/DashratNandaniya/recon-pipeline)
 
 A lightweight Go wrapper that chains together industry-standard open-source recon tools into a single automated pipeline — subdomain enumeration, DNS resolution, HTTP probing, endpoint harvesting, subdomain takeover detection, and screenshotting — for **authorized security assessments, bug bounty engagements, and educational research**.
 
@@ -32,6 +33,13 @@ Each phase writes to `output/<domain>/`, and failures in one phase are logged to
 - Go 1.20+
 - Linux (Kali, Ubuntu, Debian, Parrot, Arch, Fedora/RHEL) or macOS
 - Internet access (tools query third-party sources such as crt.sh and the Wayback Machine)
+
+### Clone the repository
+
+```bash
+git clone https://github.com/DashratNandaniya/recon-pipeline.git
+cd recon-pipeline
+```
 
 ### Installation
 
@@ -201,6 +209,12 @@ Results are saved to `output/example.com/`, including `subs.txt`, `active.txt`, 
 - **Fail-soft design** — if one phase fails or a tool is missing, the pipeline logs a warning and continues rather than aborting the whole run.
 - **Concurrency** — endpoint harvesting (Phase 4) runs up to 10 hosts in parallel using goroutines and a semaphore channel.
 - **No credentials required** — all tools operate against public DNS/HTTP infrastructure and public archives; no API keys are hardcoded, though some tools (e.g. `amass`, `subfinder`) can use optional API keys from their own config files for higher rate limits.
+
+---
+
+## 🤝 Contributing
+
+Issues and pull requests are welcome at [github.com/DashratNandaniya/recon-pipeline](https://github.com/DashratNandaniya/recon-pipeline). If you add support for a new tool or OS/package manager, please update the relevant install section and the pipeline table above.
 
 ---
 
